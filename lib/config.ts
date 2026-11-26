@@ -20,6 +20,11 @@ export const config = {
     process.env.GMAIL_ALERTS?.trim().toLowerCase() === "on" &&
       process.env.GOOGLE_OAUTH_CLIENT_ID && process.env.GOOGLE_OAUTH_CLIENT_SECRET && process.env.GOOGLE_OAUTH_REFRESH_TOKEN,
   ),
+  // Action items are copied one-way to a Google Sheet per section (see lib/sheets.ts). Needs the OAuth Google account.
+  sheetsConfigured: Boolean(
+    process.env.SHEETS_TRACKER?.trim().toLowerCase() === "on" &&
+      process.env.GOOGLE_OAUTH_CLIENT_ID && process.env.GOOGLE_OAUTH_CLIENT_SECRET && process.env.GOOGLE_OAUTH_REFRESH_TOKEN,
+  ),
   draftModel: process.env.OPENAI_DRAFT_MODEL || "gpt-5.4-mini",
   transcribeModel: process.env.OPENAI_TRANSCRIBE_MODEL || "gpt-4o-transcribe",
 };

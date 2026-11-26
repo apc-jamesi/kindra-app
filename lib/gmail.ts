@@ -1,6 +1,6 @@
 import "server-only";
-import { OAuth2Client } from "google-auth-library";
 import { config } from "./config";
+import { googleOAuthToken as accessToken } from "./googleAuth";
 import { emailsForUserId } from "./userDirectory";
 
 /**
@@ -23,14 +23,6 @@ export function alertRecipients(userId: string): string[] {
 }
 
 export const appUrl = () => (process.env.KINDRA_APP_URL || process.env.AUTH_URL || "http://localhost:3000").replace(/\/+$/, "");
-
-async function accessToken(): Promise<string> {
-  const client = new OAuth2Client(process.env.GOOGLE_OAUTH_CLIENT_ID, process.env.GOOGLE_OAUTH_CLIENT_SECRET);
-  client.setCredentials({ refresh_token: process.env.GOOGLE_OAUTH_REFRESH_TOKEN });
-  const { token } = await client.getAccessToken();
-  if (!token) throw new Error("Google did not return an access token.");
-  return token;
-}
 
 const oneLine = (s: string) => s.replace(/[\r\n]+/g, " ").trim();
 const encodeHeader = (s: string) => `=?UTF-8?B?${Buffer.from(oneLine(s), "utf8").toString("base64")}?=`;

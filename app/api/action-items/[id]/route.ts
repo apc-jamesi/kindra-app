@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { errorMessage, fail, parseBody } from "@/lib/http";
 import { accessibleStudent } from "@/lib/session";
+import { syncSectionInBackground } from "@/lib/sheets";
 import { getStore } from "@/lib/store";
 import { ITEM_STATUSES } from "@/lib/types";
 
@@ -22,6 +23,7 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
       actor: user.name, action: "status changed", entityType: "action_item", entityId: id, studentId: student.id,
       detail: `${item.status} → ${data.status} (case ${item.caseId})`,
     });
+    syncSectionInBackground(store, student.section);
     return NextResponse.json({ ok: true });
   } catch (err) {
     return fail(errorMessage(err), 500);

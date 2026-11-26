@@ -51,6 +51,7 @@ The original report demo (Jana and Miguel draft) is still in README.md.
 | PostgreSQL (local) | Connected through `DATABASE_URL`; checked on PostgreSQL 16 |
 | Urgent alerts, escalation, reminders | Built; business rules on the server |
 | Gmail alert emails | Built; really sent when `GMAIL_ALERTS=on` (counselor on alert, guidance head on escalation). Counselor alert email and guidance-head escalation email both tested against a live Gmail inbox on 2026-11-26 |
+| Google Sheets action items | Built; one sheet per section, one-way from Kindra, when `SHEETS_TRACKER=on`. Manual update tested live on 2026-11-26 (sheet created, rows match Kindra); automatic update after a status change and the Restricted filter not yet tested live. Cells carry an edit warning, since sheet edits are overwritten |
 | SMS / calls | **Simulated**: written to the Outbox, never sent |
 | Sign-in | Demo switcher, not real authentication (Microsoft sign-in planned) |
 | OpenAI drafting | As before: live with a key, sample mode without |

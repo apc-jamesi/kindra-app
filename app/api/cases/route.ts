@@ -7,6 +7,7 @@ import { errorMessage, fail, parseBody } from "@/lib/http";
 import { maskPhones } from "@/lib/redact";
 import { reportFileName, reportHtml } from "@/lib/reportDoc";
 import { accessibleStudent } from "@/lib/session";
+import { syncSectionInBackground } from "@/lib/sheets";
 import { getStore } from "@/lib/store";
 import { CATEGORIES, ITEM_STATUSES, SPEAKERS, type ActionItem, type CaseRecord, type Sourced } from "@/lib/types";
 
@@ -136,6 +137,7 @@ export async function POST(req: Request) {
   } catch (err) {
     return fail(`Could not save the report: ${errorMessage(err)}`, 500);
   }
+  syncSectionInBackground(store, student.section);
 
   // The report is already approved in Kindra; a Google Drive problem is logged but never undoes the approval.
   let driveUrl: string | null = null;
