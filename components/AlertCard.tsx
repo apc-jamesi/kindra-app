@@ -49,7 +49,7 @@ export default function AlertCard({ alert: a, canAct }: { alert: AlertRow; canAc
 
   const closed = Boolean(a.resolvedAt);
   return (
-    <article className={`card space-y-3 border-l-4 ${closed ? "border-l-line opacity-80" : a.level === "high" ? "border-l-gold" : "border-l-terracotta"}`}>
+    <article id={a.id} className={`card scroll-mt-4 space-y-3 border-l-4 ${closed ? "border-l-line opacity-80" : a.level === "high" ? "border-l-gold" : "border-l-terracotta"}`}>
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="flex flex-wrap items-center gap-2">

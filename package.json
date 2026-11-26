@@ -9,7 +9,8 @@
     "lint": "eslint",
     "db:setup": "node db/setup.mjs",
     "db:reset": "node db/setup.mjs --reset",
-    "drive:token": "node scripts/drive-token.mjs"
+    "drive:token": "node scripts/drive-token.mjs",
+    "google:token": "node scripts/drive-token.mjs"
   },
   "dependencies": {
     "@fontsource-variable/montserrat": "^5.3.0",
