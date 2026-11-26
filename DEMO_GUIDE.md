@@ -50,6 +50,7 @@ The original report demo (Jana and Miguel draft) is still in README.md.
 | --- | --- |
 | PostgreSQL (local) | Connected through `DATABASE_URL`; checked on PostgreSQL 16 |
 | Urgent alerts, escalation, reminders | Built; business rules on the server |
+| Gmail alert emails | Built; really sent when `GMAIL_ALERTS=on` (counselor on alert, guidance head on escalation). Counselor alert email and guidance-head escalation email both tested against a live Gmail inbox on 2026-11-26 |
 | SMS / calls | **Simulated**: written to the Outbox, never sent |
 | Sign-in | Demo switcher, not real authentication (Microsoft sign-in planned) |
 | OpenAI drafting | As before: live with a key, sample mode without |
@@ -60,3 +61,17 @@ The original report demo (Jana and Miguel draft) is still in README.md.
 - The concern list and family-contact rules come from the presenter's ballot and need the guidance office's sign-off.
 - Escalation runs when an alert page loads or `POST /api/alerts/escalate` is called. With nobody using the app, a scheduler must call that route.
 - The JSON-file store moved to data version 3, so existing `.data/kindra-db.json` sample data is reseeded once.
+
+## One-minute demo: Gmail urgent alert
+
+Setup: in `.env` set `GMAIL_ALERTS=on`, `GMAIL_ALERT_TO_COUNSELOR=<a test inbox you can open>` and `ESCALATE_MINUTES=1`
+(also set `GMAIL_ALERT_TO_GUIDANCE_HEAD` to the test inbox, or escalations email the real address in `KINDRA_USER_EMAILS`).
+Enable the **Gmail API** in the Google Cloud project that owns the OAuth client (APIs & Services → Library → Gmail API → Enable),
+otherwise every email fails with "Gmail API has not been used in project … or it is disabled".
+Run `npm.cmd run google:token` (approve Drive **and** Gmail), restart `npm.cmd run dev` (stop the old server first: two dev servers
+sharing `.next` cause "ENOENT … .next/server/app/page.js"), and open the test inbox in a second window.
+The header should show **Gmail: on**. Emails are sent from the Google account that approved `google:token`.
+
+1. **(0:00–0:20)** As Ms. Ana Reyes, open Jana Dela Cruz → **Raise urgent alert** → *Family problems at home* → **Send alert**. The form confirms "Email sent."
+2. **(0:20–0:40)** Switch to the inbox: "Kindra URGENT: guidance follow-up needed". Point out what it does **not** say: no name, no concern, no note.
+3. **(0:40–1:00)** Click the link: it opens that alert in Kindra. Optionally open the **Audit log** to show `email sent`.

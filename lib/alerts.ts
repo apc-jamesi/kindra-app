@@ -1,5 +1,8 @@
 import "server-only";
 import { randomUUID } from "crypto";
+import { config } from "./config";
+import { formatDateTime } from "./format";
+import { alertRecipients, appUrl, sendEmail } from "./gmail";
 import { USERS } from "./seed";
 import type { Store } from "./store/types";
 import type { AlertMessage, Student, UrgentAlert, UrgentConcern, User } from "./types";
@@ -9,12 +12,13 @@ import type { AlertMessage, Student, UrgentAlert, UrgentConcern, User } from "./
  *
  * Rules (business logic lives here, on the server; routes and pages only call these functions):
  *  - Only the student's own adviser raises an alert. AI never raises one (crisis concerns stay human-triggered).
- *  - The counselor is alerted at once: in Kindra and by SMS.
+ *  - The counselor is alerted at once: in Kindra, by SMS and (when Gmail is on) by email.
  *  - The family is contacted at once only where the policy is "auto". For self-harm, depression, mental health and
  *    family concerns the counselor approves first, or decides not to contact the family (the family may be part of it).
- *  - SMS and call scripts never contain the concern, the note or case details: only a callback request and a reference.
+ *  - SMS, call scripts and emails never contain the concern, the note or case details: only a callback request or
+ *    section, a reference and (emails) a link to sign in to Kindra.
  *  - Crisis and urgent alerts not acknowledged within ESCALATE_MINUTES go to the guidance head.
- *  - Every SMS/call is SIMULATED in the prototype: recorded in the outbox, never sent.
+ *  - Every SMS/call is SIMULATED in the prototype: recorded in the outbox, never sent. Emails are really sent (Gmail).
  */
 
 export type AlertLevel = "crisis" | "urgent" | "high";
@@ -74,6 +78,25 @@ function guardianMessages(alert: UrgentAlert, student: Student, at: string): Ale
   return channels.map((ch) => message(alert, student, "guardian", ch, student.guardianName, student.guardianPhone, text, at));
 }
 
+const EMAIL_FOOTER =
+  "For privacy, this email never includes the student's name, the concern or the adviser's note. Sign in to Kindra to see them.";
+
+/** Emails one staff member about an alert. A Gmail problem is written to the audit log and never blocks the alert. */
+async function emailStaff(store: Store, alert: UrgentAlert, staff: User, subject: string, lines: string[]): Promise<boolean> {
+  if (!config.gmailConfigured) return false;
+  const to = alertRecipients(staff.id);
+  const base = { actor: "Kindra (automatic)", entityType: "alert" as const, entityId: alert.id, studentId: alert.studentId };
+  try {
+    const body = [...lines, "", `Open the alert in Kindra: ${appUrl()}/alerts#${alert.id}`, "", `Ref ${alert.id}`, "", EMAIL_FOOTER].join("\n");
+    await sendEmail(to, subject, body);
+    await store.addAudit({ ...base, action: "email sent", detail: `${staff.name} emailed through Gmail (${to.join(", ")})` });
+    return true;
+  } catch (err) {
+    await store.addAudit({ ...base, action: "email failed", detail: `Email to ${staff.name} not sent: ${err instanceof Error ? err.message : String(err)}` });
+    return false;
+  }
+}
+
 export async function raiseAlert(
   store: Store,
   input: { user: User; student: Student; concern: UrgentConcern; note: string; caseId: string | null },
@@ -102,7 +125,11 @@ export async function raiseAlert(
     actor: input.user.name, action: "alert raised", entityType: "alert", entityId: alert.id, studentId: input.student.id,
     detail: `${rule.label} (${rule.level}). Counselor SMS simulated. Family contact: ${alert.guardianContact === "sent" ? "sent automatically (simulated)" : "waiting for counselor approval"}.`,
   });
-  return { alert, messages };
+  const emailed = await emailStaff(store, alert, c, `Kindra ${tag}: guidance follow-up needed (Ref ${alert.id})`, [
+    `A student in ${input.student.section} needs guidance follow-up.`,
+    `Please respond by ${formatDateTime(alert.respondBy)}.`,
+  ]);
+  return { alert, messages, emailed };
 }
 
 export async function acknowledgeAlert(store: Store, alert: UrgentAlert, user: User, now = new Date()) {
@@ -160,6 +187,10 @@ export async function runEscalations(store: Store, now = new Date()) {
       message(a, student, "guidance_head", "sms", head.name, head.phone ?? "", `Kindra ESCALATION: urgent alert ${a.id} (${student.section}) not acknowledged after ${escalateMinutes()} min. Please follow up now.`, at),
     ]);
     await store.addAudit({ actor: "Kindra (automatic)", action: "alert escalated", entityType: "alert", entityId: a.id, studentId: a.studentId, detail: `Not acknowledged within ${escalateMinutes()} min; guidance head notified (simulated SMS)` });
+    await emailStaff(store, a, head, `Kindra ESCALATION: alert ${a.id} not acknowledged`, [
+      `An urgent alert for a student in ${student.section} was not acknowledged within ${escalateMinutes()} ${escalateMinutes() === 1 ? "minute" : "minutes"}.`,
+      "Please follow up now.",
+    ]);
   }
   return escalated;
 }

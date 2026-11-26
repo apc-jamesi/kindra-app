@@ -8,6 +8,7 @@ import { toAlertRow } from "@/lib/alertViews";
 import { Chip, ConcernChips, Kpi, SensitivityChip, TimelinessChip } from "@/components/Chips";
 import ContactUpdateForm from "@/components/ContactUpdateForm";
 import NoAccess from "@/components/NoAccess";
+import { config } from "@/lib/config";
 import { formatDateTime, formatDay } from "@/lib/format";
 import { summarize, timeliness } from "@/lib/metrics";
 import { accessibleStudent } from "@/lib/session";
@@ -190,6 +191,7 @@ export default async function StudentPage({ params }: { params: Promise<{ id: st
               concerns={concernOptions}
               cases={cases.filter((c) => c.status !== "Closed").map((c) => ({ id: c.id, label: `${c.id} · ${c.caseType}` }))}
               escalateMinutes={escalateMinutes()}
+              emailOn={config.gmailConfigured}
             />
           </section>
           <section className="card space-y-3">

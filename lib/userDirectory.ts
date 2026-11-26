@@ -18,6 +18,11 @@ function directory(): Map<string, string> {
   return map;
 }
 
+/** Every email listed for a Kindra user id, e.g. emailsForUserId("counselor"). */
+export function emailsForUserId(id: string): string[] {
+  return [...directory()].filter(([, uid]) => uid === id).map(([email]) => email);
+}
+
 export function userIdForEmail(email: string | null | undefined): string | null {
   return email ? directory().get(email.trim().toLowerCase()) ?? null : null;
 }

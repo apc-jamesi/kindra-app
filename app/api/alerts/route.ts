@@ -26,8 +26,8 @@ export async function POST(req: Request) {
     if (!c || c.studentId !== student.id) return fail("That case does not belong to this student.", 400);
   }
   try {
-    const { alert, messages } = await raiseAlert(store, { user, student, concern: data.concern, note: data.note ?? "", caseId: data.caseId ?? null });
-    return NextResponse.json({ alert, messages: messages.length }, { status: 201 });
+    const { alert, messages, emailed } = await raiseAlert(store, { user, student, concern: data.concern, note: data.note ?? "", caseId: data.caseId ?? null });
+    return NextResponse.json({ alert, messages: messages.length, emailed }, { status: 201 });
   } catch (err) {
     return fail(errorMessage(err), 500);
   }

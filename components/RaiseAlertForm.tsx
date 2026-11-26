@@ -17,11 +17,14 @@ export default function RaiseAlertForm({
   concerns,
   cases,
   escalateMinutes,
+  emailOn = false,
 }: {
   studentId: string;
   concerns: ConcernOption[];
   cases: { id: string; label: string }[];
   escalateMinutes: number;
+  /** Gmail alerts are configured: the counselor (and, on escalation, the guidance head) is also emailed. */
+  emailOn?: boolean;
 }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -61,7 +64,10 @@ export default function RaiseAlertForm({
     }
     setOpen(false);
     setNote("");
-    setDone(`Alert ${data.alert.id} sent to the guidance counselor.`);
+    setDone(
+      `Alert ${data.alert.id} sent to the guidance counselor.` +
+        (emailOn ? (data.emailed ? " Email sent." : " The email could not be sent; see the audit log.") : ""),
+    );
     router.refresh();
   }
 
@@ -77,7 +83,7 @@ export default function RaiseAlertForm({
       </label>
       {c && (
         <ul className="list-disc space-y-1 pl-5 text-xs text-ink">
-          <li>The guidance counselor gets an alert in Kindra and an SMS.</li>
+          <li>The guidance counselor gets an alert in Kindra, an SMS{emailOn ? " and an email" : ""}.</li>
           <li>
             {c.familyPolicy === "auto"
               ? "The family gets a callback request by SMS right away."
@@ -85,7 +91,7 @@ export default function RaiseAlertForm({
           </li>
           <li>First step: {c.firstStep}</li>
           {c.level !== "high" && <li>Not acknowledged in {escalateMinutes} min → the guidance head is alerted.</li>}
-          <li>SMS and calls never include the concern or your note.</li>
+          <li>SMS, calls{emailOn ? " and emails" : ""} never include the concern or your note.</li>
         </ul>
       )}
       <label className="block">

@@ -15,6 +15,11 @@ export const config = {
       (process.env.GOOGLE_SERVICE_ACCOUNT_KEY_FILE ||
         (process.env.GOOGLE_OAUTH_CLIENT_ID && process.env.GOOGLE_OAUTH_CLIENT_SECRET && process.env.GOOGLE_OAUTH_REFRESH_TOKEN)),
   ),
+  // Urgent alerts and escalations are emailed to staff through Gmail (see lib/gmail.ts). Needs the OAuth Google account.
+  gmailConfigured: Boolean(
+    process.env.GMAIL_ALERTS?.trim().toLowerCase() === "on" &&
+      process.env.GOOGLE_OAUTH_CLIENT_ID && process.env.GOOGLE_OAUTH_CLIENT_SECRET && process.env.GOOGLE_OAUTH_REFRESH_TOKEN,
+  ),
   draftModel: process.env.OPENAI_DRAFT_MODEL || "gpt-5.4-mini",
   transcribeModel: process.env.OPENAI_TRANSCRIBE_MODEL || "gpt-4o-transcribe",
 };

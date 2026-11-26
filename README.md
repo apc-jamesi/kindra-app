@@ -49,6 +49,7 @@ Copy `.env.example` to `.env.local` and add keys to switch each part to the real
 | Supabase | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | Run `supabase/schema.sql` once. The app seeds demo data into an empty project. |
 | Telegram | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Generic message only. |
 | Urgent alerts | `ESCALATE_MINUTES` (default 15) | Minutes before an unacknowledged alert goes to the guidance head. SMS is always simulated for now. |
+| Gmail (alert emails) | `GMAIL_ALERTS=on`, `GOOGLE_OAUTH_*`, optional `GMAIL_ALERT_TO_COUNSELOR`, `GMAIL_ALERT_TO_GUIDANCE_HEAD`, `KINDRA_APP_URL` | Really emails the counselor when an alert is raised and the guidance head on escalation. Run `npm run google:token` after turning it on. Recipients default to `KINDRA_USER_EMAILS`. Emails carry only the section, a reference and a link. Results go to the audit log (`email sent` / `email failed`). |
 
 ## Demo script
 
@@ -69,6 +70,7 @@ Copy `.env.example` to `.env.local` and add keys to switch each part to the real
    - Mikaela Santos's depression alert is already **Escalated to guidance head**, because it went unacknowledged for 40 minutes.
    - On Jana's alert, choose **Don't contact family** and pick the reason *Family may be part of the concern*.
    - On Mikaela's alert, click **Approve family contact**.
+   - With Gmail on, the counselor's inbox has the alert email within seconds; its link opens this alert.
 9. Open **Outbox (simulated SMS)**. The guardian SMS and call script ask for a callback and give a reference. They carry no concern and no note.
 10. Switch to **Mr. Carlo Tan** and open **Reminders**: overdue, due today and the next 7 days. Change a status there.
 11. Open the **Audit log** as the guidance head: every alert, escalation and family-contact decision is there.
@@ -134,5 +136,6 @@ lib/store/                local JSON, PostgreSQL and Supabase stores (same inter
 db/schema.sql, db/setup.mjs  PostgreSQL schema and `npm run db:setup` / `db:reset`
 lib/session.ts            Entra sign-in → Kindra user (KINDRA_USER_EMAILS) and assignment-based access
 lib/drive.ts              copies approved case reports to Google Drive as Google Docs
+lib/gmail.ts              emails urgent alerts and escalations to staff through Gmail
 supabase/schema.sql       same tables for Supabase (incl. urgent_alerts, alert_messages)
 ```
