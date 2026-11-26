@@ -1,0 +1,552 @@
+[
+  {
+    "id": "career",
+    "title": "Career Guidance Consultation",
+    "format": "Adviser–student",
+    "studentLevel": "Senior high school",
+    "participants": "Student and adviser (no parent present)",
+    "dateOfConference": "",
+    "preparedBy": "",
+    "caseType": "Career guidance and post-secondary course exploration",
+    "speakerMap": {
+      "3": "Adviser",
+      "4": "Student",
+      "5": "Adviser",
+      "6": "Student",
+      "7": "Adviser",
+      "8": "Student",
+      "9": "Adviser",
+      "10": "Student",
+      "11": "Adviser",
+      "12": "Student",
+      "13": "Adviser",
+      "14": "Student",
+      "15": "Adviser",
+      "16": "Student",
+      "17": "Adviser",
+      "18": "Student",
+      "19": "Adviser",
+      "20": "Student",
+      "21": "Adviser",
+      "22": "Student",
+      "23": "Adviser",
+      "24": "Student"
+    },
+    "sections": {
+      "presentingConcern": {
+        "text": "The student is uncertain which college program to pursue after senior high school. The student is considering Psychology, Accountancy, and Multimedia Arts, and has received differing advice from family and friends.",
+        "src": [
+          3,
+          4,
+          14
+        ]
+      },
+      "relevantInfo": [
+        {
+          "label": "Student interests and strengths",
+          "text": "Enjoys listening to and understanding people; finds behavior and brain topics interesting; comfortable with problems when steps are clear; enjoys organizing schedules and creating video and layout work.",
+          "src": [
+            6,
+            10,
+            12
+          ]
+        },
+        {
+          "label": "Considerations raised",
+          "text": "Accountancy is associated with stability and family expectations; unsure about sustained interest in its daily work. Concern about job stability in creative fields and about whether Psychology work involving serious cases is manageable.",
+          "src": [
+            8,
+            6,
+            12
+          ]
+        },
+        {
+          "label": "Information gaps",
+          "text": "Has not reviewed curricula or admission requirements; has relied mainly on career videos and others' advice.",
+          "src": [
+            16
+          ]
+        }
+      ],
+      "guidanceImpression": {
+        "text": "The main concern appears to be an unresolved program choice, shaped by competing external advice and incomplete information about the programs.",
+        "src": [
+          13,
+          14,
+          16
+        ]
+      },
+      "strengths": {
+        "text": "Reflective and engaged; open to comparing options; willing to seek first-hand information.",
+        "src": [
+          13,
+          18,
+          22
+        ]
+      },
+      "limitations": {
+        "text": "Preliminary impression based only on this conversation. No formal aptitude or interest assessment was given.",
+        "src": []
+      },
+      "actionPlan": [
+        {
+          "owner": "Student",
+          "action": "Prepare a comparison of the three programs: subjects, career paths, and college requirements for a few schools.",
+          "target": "Before next consultation",
+          "src": [
+            17,
+            21
+          ],
+          "status": "Open"
+        },
+        {
+          "owner": "Student",
+          "action": "Ask a relative who works in accounting what her daily tasks, rewards, and challenges are; seek similar views from people in other fields.",
+          "target": "Before next consultation",
+          "src": [
+            18,
+            19
+          ],
+          "status": "Open"
+        },
+        {
+          "owner": "Student",
+          "action": "Explore introductory materials for Psychology; for Multimedia Arts, begin a small portfolio of work samples.",
+          "target": "Before next consultation",
+          "src": [
+            17
+          ],
+          "status": "Open"
+        },
+        {
+          "owner": "Adviser",
+          "action": "Point the student to reliable sources for curricula, admission requirements, and career information.",
+          "target": "Next consultation",
+          "src": [
+            15
+          ],
+          "status": "Open",
+          "flag": "Partly inferred: the transcript advises comparison but does not name specific sources."
+        },
+        {
+          "owner": "Adviser and student",
+          "action": "Schedule a follow-up consultation after the research period.",
+          "target": "After research period",
+          "src": [
+            20,
+            21
+          ],
+          "status": "Open"
+        }
+      ],
+      "monitoring": {
+        "text": "Review indicators: completed comparison; evidence of reviewing official curricula; at least one first-hand conversation; ability to explain reasons for each option. A final course choice is not required at follow-up.",
+        "src": [
+          21,
+          22
+        ]
+      },
+      "status": "Open – guidance follow-up recommended",
+      "recommendation": {
+        "text": "Continue individual career guidance at the next consultation.",
+        "src": [
+          21
+        ],
+        "flag": "Not stated in transcript: the formal report also suggests a career-interest or aptitude assessment if appropriate. Keep, edit, or remove."
+      }
+    },
+    "flags": [
+      {
+        "id": "attrib",
+        "text": "Speaker roles are inferred from turn order (transcript has no labels)."
+      },
+      {
+        "id": "date",
+        "text": "Date of conference is not in the transcript."
+      }
+    ]
+  },
+  {
+    "id": "behavior",
+    "title": "Behavioral Observation Consultation",
+    "format": "Adviser–parent",
+    "studentLevel": "Senior high school",
+    "participants": "Parent/guardian and adviser (student not present)",
+    "dateOfConference": "",
+    "preparedBy": "",
+    "caseType": "Behavioral observation and school–home coordination",
+    "speakerMap": {
+      "3": "Adviser",
+      "4": "Parent",
+      "5": "Adviser",
+      "6": "Parent",
+      "7": "Adviser",
+      "8": "Parent",
+      "9": "Adviser",
+      "10": "Parent",
+      "11": "Adviser",
+      "12": "Parent",
+      "13": "Adviser",
+      "14": "Parent",
+      "15": "Adviser",
+      "16": "Parent",
+      "17": "Adviser",
+      "18": "Parent",
+      "19": "Adviser",
+      "20": "Parent",
+      "21": "Adviser",
+      "22": "Parent",
+      "23": "Adviser"
+    },
+    "sections": {
+      "presentingConcern": {
+        "text": "Over several weeks the school has observed late arrivals, missed activities, late assignments, and less participation in group work. The adviser clarified this is a pattern, not a single incident, and that the meeting is about support rather than discipline.",
+        "src": [
+          5,
+          7
+        ]
+      },
+      "relevantInfo": [
+        {
+          "label": "School observations",
+          "text": "Arrives after the bell on several occasions; some assignments started but not completed; quieter during group work.",
+          "src": [
+            5,
+            9
+          ]
+        },
+        {
+          "label": "Parent observations",
+          "text": "Student stays up late, is hard to wake in the morning, answers school questions with 'fine' or 'nothing', and has said there is too much to do and no idea where to start.",
+          "src": [
+            6,
+            8,
+            9
+          ]
+        },
+        {
+          "label": "Contextual factors",
+          "text": "Parent's work demands have reduced evening availability; family discussions about college applications and expenses. Identified as possible pressures, not established causes.",
+          "src": [
+            12,
+            13
+          ]
+        },
+        {
+          "label": "Parent's response so far",
+          "text": "Reminds the student of deadlines often, which sometimes leads to arguments.",
+          "src": [
+            10
+          ]
+        }
+      ],
+      "guidanceImpression": {
+        "text": "The pattern calls for student-centered inquiry and coordinated monitoring. Possible contributors discussed: sleep routine, workload, difficulty organizing tasks, and uncertainty about post-secondary plans. Causes are not established.",
+        "src": [
+          11,
+          13
+        ]
+      },
+      "strengths": {
+        "text": "Parent is willing to listen, change communication, and work with the school; adviser proposed a non-punitive approach.",
+        "src": [
+          14,
+          11,
+          15
+        ]
+      },
+      "limitations": {
+        "text": "The student was not present; information about the student's experience is indirect. No clinical or behavioral diagnosis can be made.",
+        "src": []
+      },
+      "actionPlan": [
+        {
+          "owner": "Adviser",
+          "action": "Arrange a private, supportive check-in with the student, framed as support rather than blame.",
+          "target": "As soon as practicable",
+          "src": [
+            14,
+            15,
+            20
+          ],
+          "status": "Open"
+        },
+        {
+          "owner": "Adviser",
+          "action": "Monitor attendance, participation, and assignment completion for two weeks; record objective observations.",
+          "target": "Two weeks",
+          "src": [
+            17
+          ],
+          "status": "Open"
+        },
+        {
+          "owner": "Adviser",
+          "action": "Explore with the student whether workload, peers, sleep, or family/college concerns are affecting school; refer to guidance if needed.",
+          "target": "During check-in",
+          "src": [
+            13,
+            19
+          ],
+          "status": "Open"
+        },
+        {
+          "owner": "Parent/guardian",
+          "action": "Start a calm, open-ended conversation about the student's tiredness and school experience; allow time to answer before offering reminders.",
+          "target": "Next few days",
+          "src": [
+            15
+          ],
+          "status": "Open"
+        },
+        {
+          "owner": "Parent/guardian",
+          "action": "Reduce repeated deadline reminders; use brief, supportive check-ins instead. Stop leading with grades.",
+          "target": "Ongoing",
+          "src": [
+            16,
+            10
+          ],
+          "status": "Open"
+        },
+        {
+          "owner": "Adviser and parent",
+          "action": "Reconnect after the check-in and two-week monitoring period, sooner if significant concerns arise.",
+          "target": "After two weeks",
+          "src": [
+            21,
+            23
+          ],
+          "status": "Open"
+        }
+      ],
+      "monitoring": {
+        "text": "Review indicators: attendance and punctuality; assignment completion and timeliness; classroom participation; student-reported barriers; parent observations of routine and communication.",
+        "src": [
+          17,
+          21
+        ]
+      },
+      "status": "Open – student check-in and monitoring required",
+      "recommendation": {
+        "text": "Continue coordinated school–home support, obtain the student's own account, and review objective indicators before deciding on further interventions.",
+        "src": [
+          20,
+          21
+        ]
+      }
+    },
+    "escalation": {
+      "text": "If the student discloses an immediate safety concern or a safeguarding issue is identified, follow the school's safeguarding and referral procedures promptly without waiting for the scheduled review. Parent to contact the school promptly if a significant change or immediate safety concern arises.",
+      "src": [
+        19,
+        21
+      ]
+    },
+    "flags": [
+      {
+        "id": "attrib",
+        "text": "Speaker roles are inferred from turn order (transcript has no labels)."
+      },
+      {
+        "id": "date",
+        "text": "Date of conference is not in the transcript."
+      }
+    ]
+  },
+  {
+    "id": "general",
+    "title": "General Student Consultation",
+    "format": "Adviser–student–parent",
+    "studentLevel": "Senior high school",
+    "participants": "Student, parent/guardian, and adviser",
+    "dateOfConference": "",
+    "preparedBy": "",
+    "caseType": "General student consultation and academic support planning",
+    "speakerMap": {
+      "3": "Adviser",
+      "4": "Student",
+      "5": "Student",
+      "6": "Parent",
+      "7": "Student",
+      "8": "Adviser",
+      "9": "Student",
+      "10": "Adviser",
+      "11": "Student",
+      "12": "Adviser",
+      "13": "Student",
+      "14": "Adviser",
+      "15": "Adviser",
+      "16": "Student",
+      "17": "Student",
+      "18": "Student",
+      "19": "Adviser",
+      "20": "Parent",
+      "21": "Adviser",
+      "22": "Student",
+      "23": "Adviser",
+      "24": "Student",
+      "25": "Adviser",
+      "26": "Student",
+      "27": "Parent",
+      "28": "Adviser",
+      "29": "Student",
+      "30": "Parent"
+    },
+    "sections": {
+      "presentingConcern": {
+        "text": "The student feels overwhelmed by concurrent requirements (projects, quizzes, work-immersion preparation). Tasks are generally completed, but submissions are often close to deadlines, causing stress and concern about quality.",
+        "src": [
+          5,
+          6
+        ]
+      },
+      "relevantInfo": [
+        {
+          "label": "Student perspective",
+          "text": "Difficulty prioritizing; switches tasks when an earlier deadline is remembered; distracted by class group chat; sometimes notes deadlines in a phone app but does not update it. Large tasks feel too big to start, so work begins late.",
+          "src": [
+            5,
+            7,
+            9,
+            11,
+            13
+          ]
+        },
+        {
+          "label": "Well-being and routine",
+          "text": "Stays up late when feeling behind; has reduced basketball; wants to rest or disengage on weekends.",
+          "src": [
+            18
+          ]
+        },
+        {
+          "label": "Parent perspective",
+          "text": "Sees long laptop sessions and is unsure whether work is progressing; answers to 'is it finished' are often 'almost'. Repeated reminders may cause arguments.",
+          "src": [
+            6,
+            14
+          ]
+        }
+      ],
+      "guidanceImpression": {
+        "text": "Main concerns: task prioritization, inconsistent use of one planning system, difficulty breaking large work into steps, distraction, and work–rest balance. Student and parent discussed these constructively and agreed on practical adjustments.",
+        "src": [
+          8,
+          10,
+          12,
+          21
+        ]
+      },
+      "strengths": {
+        "text": "Student has insight into work habits and agreed to try a planning strategy; parent willing to change reminders and let the student own the task list.",
+        "src": [
+          7,
+          21,
+          22,
+          20
+        ]
+      },
+      "limitations": {
+        "text": "Preliminary consultation summary, not a clinical assessment. Does not establish a disorder or prove workload is excessive. Strategies need review.",
+        "src": []
+      },
+      "actionPlan": [
+        {
+          "owner": "Student",
+          "action": "Keep one weekly task list with each requirement, due date, and next action; update it when announcements arrive.",
+          "target": "Start tonight; ongoing",
+          "src": [
+            22
+          ],
+          "status": "Open"
+        },
+        {
+          "owner": "Student",
+          "action": "Split large assignments into small steps (topic, sources, outline, slides, practice); start with the next small step.",
+          "target": "Ongoing",
+          "src": [
+            12,
+            13
+          ],
+          "status": "Open"
+        },
+        {
+          "owner": "Student",
+          "action": "Set work periods and breaks, reduce distractions during focused work, and keep a more consistent bedtime; protect time for rest and basketball where feasible.",
+          "target": "Two-week trial",
+          "src": [
+            19,
+            20
+          ],
+          "status": "Open"
+        },
+        {
+          "owner": "Parent/guardian",
+          "action": "Hold brief check-ins a few times a week focused on the plan and next step, not on whether work is finished.",
+          "target": "A few times a week",
+          "src": [
+            15,
+            14
+          ],
+          "status": "Open"
+        },
+        {
+          "owner": "Parent/guardian",
+          "action": "Help gather deadlines when needed while the student updates the list.",
+          "target": "Ongoing",
+          "src": [
+            23,
+            24
+          ],
+          "status": "Open"
+        },
+        {
+          "owner": "Adviser",
+          "action": "Check in weekly during the two-week trial; help identify subject-specific barriers and coordinate academic support if needed.",
+          "target": "Weekly, two weeks",
+          "src": [
+            21,
+            28
+          ],
+          "status": "Open"
+        },
+        {
+          "owner": "All participants",
+          "action": "Treat the two weeks as a trial; review what helped, what did not, and what to adjust.",
+          "target": "End of two weeks",
+          "src": [
+            28
+          ],
+          "status": "Open"
+        }
+      ],
+      "monitoring": {
+        "text": "Review indicators: weekly list maintained; large assignments divided into steps; progress on due dates; student-reported stress and sleep; brief, constructive home check-ins. Adjustment: if difficulty persists, identify specific subjects needing support.",
+        "src": [
+          28,
+          21
+        ]
+      },
+      "status": "Open – two-week action-plan trial and monitoring",
+      "recommendation": {
+        "text": "Continue collaborative monitoring among student, parent/guardian, and adviser. Reinforce student ownership of planning while keeping supportive check-ins and a sustainable work–rest balance.",
+        "src": [
+          21,
+          28,
+          29
+        ]
+      }
+    },
+    "flags": [
+      {
+        "id": "attrib",
+        "text": "Speaker roles are inferred from turn order (transcript has no labels); some turns are inferred as 'Parent' from context."
+      },
+      {
+        "id": "date",
+        "text": "Date of conference is not in the transcript."
+      }
+    ]
+  }
+]

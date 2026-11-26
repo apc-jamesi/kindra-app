@@ -1,0 +1,40 @@
+{
+  "name": "kindra-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "db:setup": "node db/setup.mjs",
+    "db:reset": "node db/setup.mjs --reset",
+    "drive:token": "node scripts/drive-token.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/montserrat": "^5.3.0",
+    "@fontsource-variable/raleway": "^5.3.0",
+    "@supabase/supabase-js": "^2.119.2",
+    "google-auth-library": "^11.3.4",
+    "next": "^15.5.29",
+    "next-auth": "^5.0.0-beta.32",
+    "openai": "^5.23.2",
+    "pg": "^8.23.1",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "server-only": "^0.0.1",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^15.5.29",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+/*
+ * APC Campaign Brand Book 2026.
+ *  - APC Real World (primary):   #35428c
+ *  - APC Humanity Gold:          #deac4b   (accent gold #e0ae57, light gold #fed174)
+ *  - APC Future Takes Shape:     #f4f5f7   (background)
+ *  - Accents: charcoal #58595b, terracotta #b9835d, light gray #cdcdd3
+ *  - Dark/text background: the book lists "#62b69" (invalid). The swatch is a deep navy, so --color-ink
+ *    uses #262d6b sampled to match it. Confirm with the brand team.
+ * Type: Gotham (headlines) is licensed, so Montserrat stands in; Raleway for body; Georgia italic accents.
+ */
+@theme {
+  --color-brand: #35428c;
+  --color-brand-soft: #4a58a6;
+  --color-ink: #262d6b;
+  --color-gold: #deac4b;
+  --color-gold-accent: #e0ae57;
+  --color-gold-light: #fed174;
+  --color-canvas: #f4f5f7;
+  --color-charcoal: #58595b;
+  --color-terracotta: #b9835d;
+  --color-line: #cdcdd3;
+  --color-warn-bg: #fbf1dc;
+  --color-warn-text: #6b4a12;
+  --color-late-bg: #f7e7e1;
+  --color-late-text: #9a3d2a;
+  --color-ok-bg: #e6f1ea;
+  --color-ok-text: #2f6b42;
+  --color-restricted-bg: #ece9f7;
+  --color-restricted-text: #3d3487;
+  --font-sans: "Raleway Variable", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Montserrat Variable", "Segoe UI", system-ui, sans-serif;
+  --font-serif: Georgia, "Georgia Pro", "Times New Roman", serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  letter-spacing: -0.005em;
+  /* Raleway defaults to old-style figures; IDs and dates need lining numerals to stay legible. */
+  font-variant-numeric: lining-nums;
+}
+
+/* Headlines: Gotham-style bold, sentence case, -25 tracking (brand book). */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+}
+
+/* Paragraph targeted by a citation link (#p12) on report pages. */
+.para:target {
+  background: var(--color-gold-light);
+  scroll-margin-top: 120px;
+}
+
+@utility field {
+  @apply w-full rounded-md border border-line bg-white px-3 py-2 text-sm text-ink placeholder:text-charcoal/60 focus:border-brand focus:outline-none focus:ring-2 focus:ring-gold/60 disabled:bg-canvas;
+}
+@utility btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-soft disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-gold {
+  @apply inline-flex items-center justify-center gap-2 rounded-md bg-gold px-4 py-2 text-sm font-semibold text-ink transition hover:bg-gold-light disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-md border border-line bg-white px-4 py-2 text-sm font-semibold text-ink transition hover:border-brand disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility card {
+  @apply rounded-lg border border-line bg-white p-5;
+}
+@utility label {
+  @apply mb-1 block text-xs font-semibold uppercase tracking-wide text-charcoal;
+}
+@utility chip {
+  @apply inline-flex items-center whitespace-nowrap rounded-full border px-2 py-0.5 text-xs font-medium;
+}
