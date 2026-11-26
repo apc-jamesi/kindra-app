@@ -1,4 +1,5 @@
 import "server-only";
+import { after } from "next/server";
 import { config } from "./config";
 import { formatDateTime } from "./format";
 import { googleOAuthToken } from "./googleAuth";
@@ -222,16 +223,24 @@ export function syncSection(store: Store, section: string): Promise<Tracker & { 
   return next;
 }
 
-/** Starts an update without waiting for it. A Google problem is written to the audit log and never blocks the change. */
+/**
+ * Updates the sheet after the response is sent, so the status change never waits for Google. `after()` keeps a
+ * serverless function (e.g. on Vercel) alive until the update finishes. A Google problem is written to the audit log
+ * and never blocks the change. Call only from a route handler or server action.
+ */
 export function syncSectionInBackground(store: Store, section: string) {
   if (!config.sheetsConfigured) return;
-  syncSection(store, section).catch((err) =>
-    store
-      .addAudit({
-        actor: "Kindra (automatic)", action: "Google Sheet update failed", entityType: "sheet", entityId: section, studentId: null,
-        detail: err instanceof Error ? err.message : String(err),
-      })
-      .catch(() => {}),
+  after(() =>
+    syncSection(store, section)
+      .then(() => undefined)
+      .catch((err) =>
+        store
+          .addAudit({
+            actor: "Kindra (automatic)", action: "Google Sheet update failed", entityType: "sheet", entityId: section, studentId: null,
+            detail: err instanceof Error ? err.message : String(err),
+          })
+          .catch(() => {}),
+      ),
   );
 }
 
