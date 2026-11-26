@@ -1,4 +1,0 @@
-interface:
-  display_name: "FDE Client Intake"
-  short_description: "Interview clients and scope an FDE prototype"
-  default_prompt: "Use $fde-intake to review my client materials and ask discovery questions one at a time."
