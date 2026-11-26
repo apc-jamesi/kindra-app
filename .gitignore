@@ -43,3 +43,6 @@ next-env.d.ts
 # Kindra local sample data
 /.data/
 !.env.example
+
+# Claude Code personal settings
+.claude/settings.local.json
