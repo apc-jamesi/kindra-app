@@ -50,6 +50,7 @@ Copy `.env.example` to `.env.local` and add keys to switch each part to the real
 | Telegram | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Generic message only. |
 | Urgent alerts | `ESCALATE_MINUTES` (default 15) | Minutes before an unacknowledged alert goes to the guidance head. SMS is always simulated for now. |
 | Gmail (alert emails) | `GMAIL_ALERTS=on`, `GOOGLE_OAUTH_*`, optional `GMAIL_ALERT_TO_COUNSELOR`, `GMAIL_ALERT_TO_GUIDANCE_HEAD`, `KINDRA_APP_URL` | Really emails the counselor when an alert is raised and the guidance head on escalation. Run `npm run google:token` after turning it on. Recipients default to `KINDRA_USER_EMAILS`. Emails carry only the section, a reference and a link. Results go to the audit log (`email sent` / `email failed`). |
+| Google Sheets (action items) | `SHEETS_TRACKER=on`, `GOOGLE_OAUTH_*`, optional `GOOGLE_DRIVE_FOLDER_ID` | One spreadsheet per section, rewritten from Kindra (one-way) when a status changes or a report is approved, or with **Update Google Sheet** on Reminders. Overdue rows are red. Restricted records are never copied. Needs the Google Sheets API and Google Drive API enabled. Sharing each sheet with its adviser is done by hand in Drive. |
 
 ## Demo script
 
@@ -137,5 +138,6 @@ db/schema.sql, db/setup.mjs  PostgreSQL schema and `npm run db:setup` / `db:rese
 lib/session.ts            Entra sign-in → Kindra user (KINDRA_USER_EMAILS) and assignment-based access
 lib/drive.ts              copies approved case reports to Google Drive as Google Docs
 lib/gmail.ts              emails urgent alerts and escalations to staff through Gmail
+lib/sheets.ts             copies action items one-way to a Google Sheet per section (Restricted records left out)
 supabase/schema.sql       same tables for Supabase (incl. urgent_alerts, alert_messages)
 ```

@@ -69,6 +69,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
               <span className="rounded-full bg-gold-light px-2.5 py-0.5 text-xs font-medium text-ink">SMS: simulated</span>
               <ModeBadge on={config.driveConfigured} onLabel="Drive: on" offLabel="Drive: off" />
               <ModeBadge on={config.gmailConfigured} onLabel="Gmail: on" offLabel="Gmail: off" />
+              <ModeBadge on={config.sheetsConfigured} onLabel="Sheets: on" offLabel="Sheets: off" />
               <span className="text-right text-xs leading-tight text-white/85" title={user.email}>
                 <span className="block font-semibold text-white">{user.name}</span>
                 {user.label}

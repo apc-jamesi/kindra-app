@@ -5,8 +5,10 @@ import CaseControls from "@/components/CaseControls";
 import { Chip, ConcernChips, SensitivityChip, TimelinessChip } from "@/components/Chips";
 import NoAccess from "@/components/NoAccess";
 import NotifyButton from "@/components/NotifyButton";
+import SaveToDriveButton from "@/components/SaveToDriveButton";
 import SourceChips from "@/components/SourceChips";
 import Transcript from "@/components/Transcript";
+import { config } from "@/lib/config";
 import { formatDateTime, formatDay } from "@/lib/format";
 import { timeliness } from "@/lib/metrics";
 import { accessibleStudent } from "@/lib/session";
@@ -160,7 +162,7 @@ export default async function CasePage({
         <ActionItemsTable items={toItemRows(items)} showCase={false} />
       </section>
 
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className={`grid gap-6 ${config.driveConfigured ? "md:grid-cols-2 xl:grid-cols-4" : "md:grid-cols-3"}`}>
         <section className="card">
           <h2 className="mb-3 text-lg font-bold">Case status</h2>
           <CaseControls caseId={record.id} status={record.status} nextReview={record.nextReview} />
@@ -170,6 +172,12 @@ export default async function CasePage({
           <h2 className="mb-3 text-lg font-bold">Notify</h2>
           <NotifyButton caseId={record.id} />
         </section>
+        {config.driveConfigured && (
+          <section className="card">
+            <h2 className="mb-3 text-lg font-bold">Google Drive</h2>
+            <SaveToDriveButton caseId={record.id} />
+          </section>
+        )}
         <section className="card">
           <h2 className="mb-3 text-lg font-bold">Audit trail</h2>
           <ul className="max-h-48 space-y-1.5 overflow-y-auto text-xs">

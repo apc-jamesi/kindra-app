@@ -141,7 +141,7 @@ export interface AuditEntry {
   at: string;
   actor: string;
   action: string;
-  entityType: "student" | "case" | "action_item" | "contact" | "notification" | "draft" | "alert";
+  entityType: "student" | "case" | "action_item" | "contact" | "notification" | "draft" | "alert" | "sheet";
   entityId: string;
   studentId: string | null;
   detail: string;
